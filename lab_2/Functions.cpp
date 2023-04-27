@@ -61,8 +61,7 @@ void menu(Text* texts) {
         c = ' ';
         str.clear();
 
-        cout << "Enter string: ";
-        cin >> str;
+        
 
         cout << "Enter 1 if you want to add string to the first object\n2 if second object" 
             << "\n3 if third object\n4 if you want to see all text:\nOr somthing else to end program: ";
@@ -78,14 +77,28 @@ void menu(Text* texts) {
 
         }
 
-        else if (c == '1')
+        else if (c == '1') {
+
+            cout << "Enter string: ";
+            cin >> str;
             texts[0].append(str);
 
-        else if (c == '2')
-            texts[1].append(str);
+        }
 
-        else if (c == '3')
+        else if (c == '2') {
+
+            cout << "Enter string: ";
+            cin >> str;
+            texts[1].append(str);
+        }
+
+        else if (c == '3') {
+
+            cout << "Enter string: ";
+            cin >> str;
             texts[2].append(str);
+        
+        }
 
         else {
 
