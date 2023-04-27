@@ -61,19 +61,20 @@ void menu(Text* texts) {
         c = ' ';
         str.clear();
 
-        cout << "Enter 1 if you want to add string to the first object\n2 if second object" 
-            << "\n3 if third object\n4 if you want to see all text:\nOr somthing else to end program: ";
+        cout << "Enter 1 if you want to add string to the first object\n2 if second object\n"
+            << "3 if third object\n4 if you want to see all text:" 
+            << "\n5 if you want to see text with the smallest amount of digits\nOr somthing else to end program: ";
 
         cin >> c;
 
-        if (c != '1' && c != '2' && c != '3' && c != '4') {
+        if (c != '1' && c != '2' && c != '3' && c != '4' && c != '5') {
 
             cout << "The end!" << endl;
             break;
 
         }
 
-        if (c != '4') {
+        if (c != '4' && c != '5') {
 
             cout << "Enter string: ";
             cin >> str;
@@ -101,9 +102,15 @@ void menu(Text* texts) {
 
         }
 
-        cout << endl;
+        else if (c == '5') {
 
-        texts->smallest_number_of_digit(texts);
+            cout << endl;
+
+            texts->smallest_number_of_digit(texts);
+
+            cout << endl;
+
+        }
 
         cout << endl;
 
