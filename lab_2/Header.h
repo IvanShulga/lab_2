@@ -20,8 +20,12 @@ public:
 
     string getContent();
 
-    void smallest_number_of_digit(Text* texts);
+    void smallest_number_of_digit(Text* texts, int num);
 
 };
 
-void menu(Text* texts);
+void menu(Text* texts, int n);
+
+void choose_text(Text* texts, string str, int n);
+
+int num_texts();
