@@ -3,13 +3,11 @@
 
 int main() {
 
-    Text texts[3] = {
-        Text("123Hello, world!"),
-        Text("Hello, 123world!"),
-        Text("Hello, world!123")
-    };
+    int num = num_texts();
+    Text* texts;
+    texts = new Text[num];
 
-    menu(texts);
+    menu(texts, num);
 
     return 0;
 
