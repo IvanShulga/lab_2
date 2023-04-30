@@ -8,8 +8,8 @@ Text::Text(string content) {
 
 void Text::append(string str) {
 
-    content += '\n';
     content += str;
+    content += '\n';
 
 }
 
@@ -28,7 +28,14 @@ float Text::digitPercentage() {
 
     }
 
-    return digitCount / charCount * 100;
+    float percent;
+
+    if (charCount != 0)
+        percent = digitCount / charCount * 100;
+
+    else percent = 0;
+
+    return percent;
 }
 
 string Text::getContent() {
@@ -37,76 +44,69 @@ string Text::getContent() {
 
 }
 
-void Text::smallest_number_of_digit(Text* texts) {
+void Text::smallest_number_of_digit(Text* texts, int num) {
 
     Text* minDigitText = &texts[0];
 
-    for (int i = 1; i < 3; i++)
+    for (int i = 1; i < num; i++)
 
         if (texts[i].digitPercentage() < minDigitText->digitPercentage())
             minDigitText = &texts[i];
 
-    cout << "Text with the smallest digit percentage:\n" << "------------------------------------------------------------" << endl << minDigitText->getContent() << "\n" << "------------------------------------------------------------" << endl << "Digit percentage: " << minDigitText->digitPercentage() << "%" << endl;
-
+    cout << "Text with the smallest digit percentage:\n" << "------------------------------------------------------------" 
+        << endl << minDigitText->getContent() << "\n" << "------------------------------------------------------------" 
+        << endl << "Digit percentage: " << minDigitText->digitPercentage() << "%" << endl;
 
 }
 
-void menu(Text* texts) {
+void menu(Text* texts, int n) {
 
     char c;
     string str;
-
+    int m;
+    
     do {
 
         c = ' ';
         str.clear();
 
-        cout << "Enter 1 if you want to add string to the first object\n2 if second object\n"
-            << "3 if third object\n4 if you want to see all text:" 
-            << "\n5 if you want to see text with the smallest amount of digits\nOr somthing else to end program: ";
+        cout << "Write 1 if you want add somthing to any object\n2 if you want to see one of texts" 
+            << "\n3 if you want to see text with the smallest amount of digits\nOr somthing else to end program: ";
 
         cin >> c;
 
-        if (c != '1' && c != '2' && c != '3' && c != '4' && c != '5') {
+        if (c != '1' && c != '2' && c != '3') {
 
             cout << "The end!" << endl;
             break;
 
         }
 
-        if (c != '4' && c != '5') {
+        if (c == '1') {
 
             cout << "Enter string: ";
             cin >> str;
-        
+            choose_text(texts, str, n);
+
         }
 
-        if (c == '1')
+        else if (c == '2') {
 
-            texts[0].append(str);
+            cout << "Enter number of text for which you want add string: ";
 
-        else if (c == '2')
-
-            texts[1].append(str);
-
-        else if (c == '3') 
-
-            texts[2].append(str);
-
-        else if (c == '4') {
-
-            cout << "\nFirst text:\n" << texts[0].getContent() << "\n\nSecond text:\n" << texts[1].getContent()
-                << "\n\nThird text:\n" << texts[2].getContent() << endl << endl;
+            cin >> m;
+            cout << "Text #" << m << " is: \n---------------------------------------------\n" 
+                << texts[m].getContent() << "---------------------------------------------\n";
 
             continue;
 
         }
 
-        else if (c == '5') {
+        else if (c == '3') {
 
             cout << endl;
 
-            texts->smallest_number_of_digit(texts);
+            texts->smallest_number_of_digit(texts, n);
 
             cout << endl;
 
@@ -115,5 +115,35 @@ void menu(Text* texts) {
         cout << endl;
 
     } while (true);
+
+}
+
+void choose_text(Text* texts, string str, int num) {
+
+    int n;
+
+    do {
+
+        cout << "Enter ind of text to which you want add string: ";
+        cin >> n;
+
+    } while (n > num);
+
+    texts[n].append(str);
+
+}
+
+int num_texts() {
+
+    char n;
+
+    do {
+
+        cout << "Write number of texts (>1): ";
+        cin >> n;
+
+    } while (n == '0' || n == '1' || isalpha(n));
+
+    return static_cast<int> (n);
 
 }
