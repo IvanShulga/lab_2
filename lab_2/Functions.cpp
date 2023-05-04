@@ -70,7 +70,7 @@ void menu(Text* texts, int n) {
         c = ' ';
         str.clear();
 
-        cout << "Write 1 if you want add somthing to any object\n2 if you want to see one of texts" 
+        cout << "Write 1 if you want add something to any object\n2 if you want to see one of texts" 
             << "\n3 if you want to see text with the smallest amount of digits\nOr somthing else to end program: ";
 
         cin >> c;
@@ -92,7 +92,7 @@ void menu(Text* texts, int n) {
 
         else if (c == '2') {
 
-            cout << "Enter number of text for which you want add string: ";
+            cout << "Enter ind of text which you want to see: ";
 
             cin >> m;
             cout << "Text #" << m << " is: \n---------------------------------------------\n" 
@@ -135,15 +135,15 @@ void choose_text(Text* texts, string str, int num) {
 
 int num_texts() {
 
-    char n;
+    int n;
 
     do {
 
         cout << "Write number of texts (>1): ";
         cin >> n;
 
-    } while (n == '0' || n == '1' || isalpha(n));
+    } while (n < 2);
 
-    return static_cast<int> (n);
+    return n;
 
 }
